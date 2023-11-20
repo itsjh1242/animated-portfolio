@@ -11,7 +11,7 @@ const Cursor = styled.div`
   height: 20px;
   border-radius: 50%;
   background-color: #d3d3d3;
-  transform: translate(-50%, -50%);ß
+  transform: translate(-50%, -50%);
 `;
 
 function MouseTracker() {
