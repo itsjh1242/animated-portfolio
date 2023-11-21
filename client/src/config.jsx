@@ -10,6 +10,9 @@ export const En_Configuration = {
   },
   //   Landing Page
   Landing: {
-    Title: ["FRONTEND DEVELOPER"],
+    Title: [
+      ["FRONTEND", "DEVELOPER"],
+      ["UI/UX", "DESIGNER"],
+    ],
   },
 };

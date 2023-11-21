@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { Mobile, PC } from "../function/DeviceDectect";
 import * as Configuration from "../config";
@@ -12,8 +12,17 @@ import * as G from "../styles/GlobalStyle";
 import * as S from "../styles/MainStyle";
 
 const Main = (props) => {
-  const [language, setLanguage] = React.useState("en");
+  const [language, setLanguage] = useState("en");
   const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
+
+  const [TitleSlideIdx, setTitleSlideIdx] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleSlideIdx((prevIdx) => (prevIdx + 1) % Config.Landing.Title.length);
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, [Config.Landing.Title.length]);
 
   return (
     <>
@@ -23,12 +32,11 @@ const Main = (props) => {
         <G.Container>
           <S.Landing>
             <S.LandingTitleContainer>
-              <S.LandingTitle>I AM</S.LandingTitle>
-              {Config.Landing.Title.map((title, index) => (
-                <S.LandingTitle key={index} data-text={title}>
-                  {title}
-                </S.LandingTitle>
-              ))}
+              <S.Titletop>I AM</S.Titletop>
+              <S.TitleCenter data-text={Config.Landing.Title[TitleSlideIdx][0]} style={{ opacity: TitleSlideIdx !== 0 ? 1 : 0, transition: "opacity 1s" }}>
+                {Config.Landing.Title[TitleSlideIdx][0]}
+              </S.TitleCenter>
+              <S.TitleBottom>{Config.Landing.Title[TitleSlideIdx][1]}</S.TitleBottom>
             </S.LandingTitleContainer>
           </S.Landing>
         </G.Container>
