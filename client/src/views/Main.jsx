@@ -25,7 +25,9 @@ const Main = (props) => {
             <S.LandingTitleContainer>
               <S.LandingTitle>I AM</S.LandingTitle>
               {Config.Landing.Title.map((title, index) => (
-                <S.LandingTitle key={index}>{title}</S.LandingTitle>
+                <S.LandingTitle key={index} data-text={title}>
+                  {title}
+                </S.LandingTitle>
               ))}
             </S.LandingTitleContainer>
           </S.Landing>
