@@ -9,6 +9,7 @@ const CursorContainer = styled.div`
   border-radius: 50%;
   mouse-events: none;
   transition: transform 0.2s ease;
+  z-index: 999;
 `;
 
 const Cursor = styled.div`
@@ -21,6 +22,7 @@ const Cursor = styled.div`
   top: 50%;
   left: 50%;
   mouse-events: none;
+  z-index: 999;
 `;
 
 function MouseTracker() {

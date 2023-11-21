@@ -29,6 +29,7 @@ export const LandingTitle = styled.p`
     color: #000000;
     -webkit-text-stroke: 0.05vw #d3d3d3;
     text-transform: uppercase;
+    
 
     &::before {
       content: attr(data-text);
