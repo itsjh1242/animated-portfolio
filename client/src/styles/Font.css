@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'En Light';
+    src: url('./font/DMSans-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'En Medium';
+    src: url('./font/DMSans-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'En Bold';
+    src: url('./font/DMSans-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Ko Light';
+    src: url('./font/EASTARJET-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'Ko Medium';
+    src: url('./font/EASTARJET-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'Ko Bold';
+    src: url('./font/EASTARJET-Bold.woff') format('woff');
+}
