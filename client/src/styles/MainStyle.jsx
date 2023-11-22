@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const Landing = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 30px 60px;
 `;
 
@@ -14,6 +14,7 @@ export const LandingTitleContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   transform: translateY(-5%);
+  line-height: 110px;
 `;
 
 export const Titletop = styled.p`
@@ -42,6 +43,7 @@ export const TitleCenter = styled.p`
     overflow: hidden;
     animation: titleAnimate 8s infinite;
   }
+
   @keyframes titleAnimate {
     0% {
       width: 0;
@@ -59,4 +61,14 @@ export const TitleBottom = styled.p`
   font-family: "En Medium";
   font-size: calc(60px + 3vw);
   color: #d3d3d3;
+  animation: fadeIn 1s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;

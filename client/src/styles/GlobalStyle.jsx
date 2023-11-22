@@ -11,6 +11,8 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
     body {
+        width: 100%;
+        height: 100%;
         background-color: #000000;
         color: #ffffff;
         -ms-overflow-style: none;
@@ -34,7 +36,6 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Nav = styled.div`
   width: 100%;
-  height: 60px;
   padding: 30px 60px;
   position: fixed;
   top: 0;
@@ -45,6 +46,6 @@ export const Nav = styled.div`
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0 auto;
 `;

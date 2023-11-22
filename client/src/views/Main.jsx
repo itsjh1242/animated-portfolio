@@ -16,13 +16,14 @@ const Main = (props) => {
   const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
 
   const [TitleSlideIdx, setTitleSlideIdx] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTitleSlideIdx((prevIdx) => (prevIdx + 1) % Config.Landing.Title.length);
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [Config.Landing.Title.length]);
+  }, [Config.Landing.Title.length, TitleSlideIdx]);
 
   return (
     <>
@@ -33,10 +34,8 @@ const Main = (props) => {
           <S.Landing>
             <S.LandingTitleContainer>
               <S.Titletop>I AM</S.Titletop>
-              <S.TitleCenter data-text={Config.Landing.Title[TitleSlideIdx][0]} style={{ opacity: TitleSlideIdx !== 0 ? 1 : 0, transition: "opacity 1s" }}>
-                {Config.Landing.Title[TitleSlideIdx][0]}
-              </S.TitleCenter>
-              <S.TitleBottom>{Config.Landing.Title[TitleSlideIdx][1]}</S.TitleBottom>
+              <S.TitleCenter data-text={Config.Landing.Title[TitleSlideIdx][0]}>{Config.Landing.Title[TitleSlideIdx][0]}</S.TitleCenter>
+              <S.TitleBottom key={TitleSlideIdx}>{Config.Landing.Title[TitleSlideIdx][1]}</S.TitleBottom>
             </S.LandingTitleContainer>
           </S.Landing>
         </G.Container>
