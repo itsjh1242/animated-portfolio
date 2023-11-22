@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const Landing = styled.div`
   width: 100%;
@@ -19,15 +19,15 @@ export const LandingTitleContainer = styled.div`
 
 export const Titletop = styled.p`
   font-family: "En Medium";
-  font-size: calc(60px + 1vw);
+  font-size: calc(40px + 1vw);
   color: #d3d3d3;
 `;
 
 export const TitleCenter = styled.p`
-  font-family: "En Medium";
-  font-size: calc(60px + 3vw);
+  font-family: "Ko Medium";
+  font-size: calc(100px + 3vw);
   position: relative;
-  color: #000000;
+  color: transparent;
   -webkit-text-stroke: 0.05vw #d3d3d3;
 
   &::before {
@@ -38,10 +38,9 @@ export const TitleCenter = styled.p`
     width: 0;
     height: 100%;
     color: #d3d3d3;
-    -webkit-text-stroke: 0.01vw #000000;
-    border-right: 0.1vw solid #d3d3d3;
+    border-right: 0.5vw solid #d3d3d3;
     overflow: hidden;
-    animation: titleAnimate 8s infinite;
+    animation: titleAnimate 4s infinite;
   }
 
   @keyframes titleAnimate {
@@ -58,17 +57,30 @@ export const TitleCenter = styled.p`
 `;
 
 export const TitleBottom = styled.p`
-  font-family: "En Medium";
-  font-size: calc(60px + 3vw);
+  white-space: nowrap;
+  postion: fixed;
   color: #d3d3d3;
-  animation: fadeIn 1s ease-in-out;
+  font-family: "En Bold";
+  font-size: calc(100px + 3vw);
+  animation: textAnimation 1s ease-in-out;
+  animation-delay: ${(props) => props.idx * 0.1}s;
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
+  @keyframes textAnimation {
+    0%,
+    40%,
+    100% {
+      transform: translateY(0);
     }
-    to {
-      opacity: 1;
+    20% {
+      transform: translateY(-15px);
     }
   }
+`;
+
+export const LottieScroll = styled.div`
+  background-color: transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateX(20%);
 `;

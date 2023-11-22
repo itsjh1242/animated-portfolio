@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         width: 100%;
         height: 100%;
-        background-color: #000000;
+        background-color: #101010;
         color: #ffffff;
         -ms-overflow-style: none;
         -webkit-user-select:none;
@@ -48,4 +48,9 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   margin: 0 auto;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
 `;

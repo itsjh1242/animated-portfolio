@@ -11,8 +11,8 @@ export const En_Configuration = {
   //   Landing Page
   Landing: {
     Title: [
-      ["FRONTEND", "DEVELOPER"],
-      ["UI/UX", "DESIGNER"],
+      ["FRONTEND", ["D", "E", "V", "E", "L", "O", "P", "E", "R"]],
+      ["UI", ["D", "E", "S", "I", "G", "N", "E", "R"]],
     ],
   },
 };

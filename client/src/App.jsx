@@ -2,7 +2,7 @@
 // Global Style
 import { GlobalStyle } from "./styles/GlobalStyle";
 // Cursor Style
-import Cursor from "./function/Cursor";
+import Cursor from "./functions/Cursor";
 
 // React
 import React from "react";
