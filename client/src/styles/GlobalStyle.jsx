@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         cursor: none;
         margin: 0;
+        padding: 0;
     }
     a {
         color: inherit;

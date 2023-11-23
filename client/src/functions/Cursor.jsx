@@ -1,45 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const CursorContainer = styled.div`
+const CursorDot = styled.div`
   position: fixed;
-  width: 35px;
-  height: 35px;
-  border: 1px solid rgb(244, 244, 244);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  mouse-events: none;
-  transition: transform 0.2s ease;
   z-index: 999;
-`;
-
-const Cursor = styled.div`
-  position: fixed;
+  pointer-events: none;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background-color: rgb(244, 244, 244);
+  background-color: #d3d3d3;
+`;
+
+const CursorOutline = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  mouse-events: none;
+  border-radius: 50%;
   z-index: 999;
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid hsla(0, 0%, 100%, 0.5);
+  transition: all 150ms ease-out;
 `;
 
 function MouseTracker() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isActived, setIsActived] = useState(false);
-
   useEffect(() => {
+    const cursorDot = document.querySelector("[data-cursor-dot]");
+    const cursorOutline = document.querySelector("[data-cursor-outline]");
+
     const updateMousePosition = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      const posX = e.clientX;
+      const posY = e.clientY;
+
+      cursorDot.style.left = `${posX}px`;
+      cursorDot.style.top = `${posY}px`;
+
+      cursorOutline.animate(
+        {
+          left: `${posX}px`,
+          top: `${posY}px`,
+        },
+        { duration: 500, fill: "forwards" }
+      );
     };
 
     const handleMouseActive = () => {
-      setIsActived(true);
+      cursorOutline.style.transform = "scale(1.1)";
     };
 
     const handleMouseInactive = () => {
-      setIsActived(false);
+      cursorOutline.style.transform = "scale(1)";
     };
 
     document.addEventListener("mousemove", updateMousePosition);
@@ -55,9 +70,8 @@ function MouseTracker() {
 
   return (
     <>
-      <CursorContainer style={{ top: position.y, left: position.x, transform: isActived ? "scale(1.5)" : "scale(1)" }}>
-        <Cursor />
-      </CursorContainer>
+      <CursorDot data-cursor-dot />
+      <CursorOutline data-cursor-outline />
     </>
   );
 }

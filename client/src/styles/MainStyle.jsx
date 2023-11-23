@@ -13,13 +13,13 @@ export const LandingTitleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  transform: translateY(-5%);
-  line-height: 110px;
+  line-height: 130px;
+  transform: translateY(-10%);
 `;
 
 export const Titletop = styled.p`
-  font-family: "En Medium";
-  font-size: calc(40px + 1vw);
+  font-family: "Ko Bold";
+  font-size: calc(45px + 1vw);
   color: #d3d3d3;
 `;
 
@@ -38,7 +38,6 @@ export const TitleCenter = styled.p`
     width: 0;
     height: 100%;
     color: #d3d3d3;
-    border-right: 0.5vw solid #d3d3d3;
     overflow: hidden;
     animation: titleAnimate 4s infinite;
   }
