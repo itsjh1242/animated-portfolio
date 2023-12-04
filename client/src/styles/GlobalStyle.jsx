@@ -11,6 +11,10 @@ export const GlobalStyle = createGlobalStyle`
         color: inherit;
         text-decoration: none;
     }
+    p{
+      margin: 0;
+      padding: 0;
+    }
     body {
         width: 100%;
         height: 100%;
@@ -42,7 +46,8 @@ export const Nav = styled.div`
   top: 0;
   left: 0;
   font-family: "En Medium";
-  font-size: 40px;
+  font-size: 30px;
+  transition: all 0.5s ease-in-out;
 `;
 
 export const Container = styled.div`
@@ -52,6 +57,17 @@ export const Container = styled.div`
 `;
 
 export const Row = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
+`;
+
+export const Column = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: ${(props) => props.jc};
+  align-items: ${(props) => props.ai};
 `;

@@ -26,10 +26,12 @@ const CursorOutline = styled.div`
   height: 30px;
   border: 2px solid hsla(0, 0%, 100%, 0.5);
   transition: all 150ms ease-out;
+  mix-blend-mode: difference;
 `;
 
 function MouseTracker() {
   useEffect(() => {
+    // 마우스 커서 이벤트
     const cursorDot = document.querySelector("[data-cursor-dot]");
     const cursorOutline = document.querySelector("[data-cursor-outline]");
 
@@ -48,13 +50,15 @@ function MouseTracker() {
         { duration: 500, fill: "forwards" }
       );
     };
-
+    // 마우스 커서 클릭 이벤트
     const handleMouseActive = () => {
-      cursorOutline.style.transform = "scale(1.1)";
+      cursorOutline.style.width = "50px";
+      cursorOutline.style.height = "50px";
     };
 
     const handleMouseInactive = () => {
-      cursorOutline.style.transform = "scale(1)";
+      cursorOutline.style.width = "30px";
+      cursorOutline.style.height = "30px";
     };
 
     document.addEventListener("mousemove", updateMousePosition);

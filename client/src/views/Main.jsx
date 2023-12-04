@@ -16,44 +16,49 @@ import Lottie from "lottie-react";
 // Lottie Json
 import * as LottieScroll from "../lotties/scroll.json";
 
+// Events
+import MainEvents from "../functions/MainEvents";
+
 const Main = (props) => {
   const [language, setLanguage] = useState("en");
   const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
 
-  const [TitleSlideIdx, setTitleSlideIdx] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTitleSlideIdx((prevIdx) => (prevIdx + 1) % Config.Landing.Title.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [Config.Landing.Title.length, TitleSlideIdx]);
-
   return (
     <>
+      {/* MOBILE */}
       <Mobile>mobile</Mobile>
+      {/* PC */}
       <PC>
-        <G.Nav>{Config.Information.Name}</G.Nav>
+        <G.Nav data-nav>{Config.Information.Name}</G.Nav>
+        <S.LottieScroll>
+          <Lottie animationData={LottieScroll} width={100} height={100} />
+        </S.LottieScroll>
         <G.Container>
           <S.Landing>
             <S.LandingTitleContainer>
-              <S.Titletop>I AM</S.Titletop>
-              <S.TitleCenter data-text={Config.Landing.Title[TitleSlideIdx][0]}>{Config.Landing.Title[TitleSlideIdx][0]}</S.TitleCenter>
-              <G.Row>
-                {Config.Landing.Title[TitleSlideIdx][1].map((char, idx) => (
-                  <S.TitleBottom key={[idx, TitleSlideIdx]} data-text={char} idx={idx}>
-                    {char}
-                  </S.TitleBottom>
-                ))}
-              </G.Row>
+              <G.Column jc="center" ai="center">
+                <S.LandingTitleTop>{Config.Landing.Title[0]}</S.LandingTitleTop>
+                <S.LandingTitleBottom data-ltb>{Config.Landing.Title[1]}</S.LandingTitleBottom>
+              </G.Column>
             </S.LandingTitleContainer>
-            <S.LottieScroll>
-              <Lottie animationData={LottieScroll} width={100} height={100} />
-            </S.LottieScroll>
           </S.Landing>
         </G.Container>
+        <S.MainMacBookLongFrame>
+          <S.MainMacBookImageFrame data-macbook-frame>
+            <S.MainMacBookImage data-macbook-image>
+              <img src={Config.Image.MainMacBook} alt="Main MacBook" />
+            </S.MainMacBookImage>
+          </S.MainMacBookImageFrame>
+          <S.SlidingIntro data-sliding-intro>
+            {Config.Landing.SlidingIntro.map((item, index) => (
+              <S.SlidingIntroItem key={index} data-sliding-intro-item>
+                <p data-IntroItem>{item[0]}</p>
+              </S.SlidingIntroItem>
+            ))}
+          </S.SlidingIntro>
+        </S.MainMacBookLongFrame>
       </PC>
+      <MainEvents />
     </>
   );
 };

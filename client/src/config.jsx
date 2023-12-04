@@ -5,14 +5,19 @@ export const Ko_Configuration = {
 };
 
 export const En_Configuration = {
+  Image: {
+    MainMacBook: "./images/MacBookGradationGrey.png",
+  },
   Information: {
     Name: "Jun Hyeon Kim",
   },
   //   Landing Page
   Landing: {
-    Title: [
-      ["FRONTEND", ["D", "E", "V", "E", "L", "O", "P", "E", "R"]],
-      ["UI", ["D", "E", "S", "I", "G", "N", "E", "R"]],
+    Title: ["KIM JUN HYEON", "PORTFOLIO WEBSITE"],
+    SlidingIntro: [
+      ["I AM A FRONT-END DEVELOPER", "Extra Desc"],
+      ["I AM A UI/UX DESIGNER", "Extra Desc"],
+      ["THIS IS STYLISH PORTFOLIO WEBSITE THAT I MADE", "Extra Desc"],
     ],
   },
 };

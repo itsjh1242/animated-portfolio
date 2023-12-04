@@ -17,69 +17,93 @@ export const LandingTitleContainer = styled.div`
   transform: translateY(-10%);
 `;
 
-export const Titletop = styled.p`
-  font-family: "Ko Bold";
-  font-size: calc(45px + 1vw);
-  color: #d3d3d3;
+export const LandingTitleTop = styled.p`
+  font-family: "En Light";
+  font-size: 80px;
+  line-height: 80px;
 `;
 
-export const TitleCenter = styled.p`
-  font-family: "Ko Medium";
-  font-size: calc(100px + 3vw);
-  position: relative;
-  color: transparent;
-  -webkit-text-stroke: 0.05vw #d3d3d3;
-
-  &::before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    color: #d3d3d3;
-    overflow: hidden;
-    animation: titleAnimate 4s infinite;
-  }
-
-  @keyframes titleAnimate {
-    0% {
-      width: 0;
-    }
-    50% {
-      width: 100%;
-    }
-    100% {
-      width: 0;
-    }
-  }
-`;
-
-export const TitleBottom = styled.p`
-  white-space: nowrap;
-  postion: fixed;
-  color: #d3d3d3;
+export const LandingTitleBottom = styled.p`
   font-family: "En Bold";
-  font-size: calc(100px + 3vw);
-  animation: textAnimation 1s ease-in-out;
-  animation-delay: ${(props) => props.idx * 0.1}s;
+  font-size: 100px;
+  line-height: 100px;
 
-  @keyframes textAnimation {
-    0%,
-    40%,
-    100% {
-      transform: translateY(0);
+  animation: fadein 4s;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
     }
-    20% {
-      transform: translateY(-15px);
+    100% {
+      opacity: 1;
     }
   }
 `;
 
 export const LottieScroll = styled.div`
+  position: absolute;
   background-color: transparent;
   position: absolute;
+  width: fit-content;
+  height: fit-content;
   bottom: 0;
   right: 0;
-  transform: translateX(20%);
+`;
+
+export const MainMacBookLongFrame = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const MainMacBookImageFrame = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  clip-path: inset(0% 30%);
+  transform: translateY(-25%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+`;
+
+export const MainMacBookImage = styled.div`
+  width: 100%;
+  height: 500px;
+  transition: all 1s ease-in-out;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const SlidingIntro = styled.div`
+  position: relative;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  transform: translateY(1000px);
+`;
+
+export const SlidingIntroItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 60%;
+  height: 100%;
+
+  & > p {
+    transition: all 1s ease-in-out;
+    font-family: "En Bold";
+    font-size: 80px;
+    line-height: 80px;
+    margin: 0;
+    padding: 20px 30px;
+    color: transparent;
+  }
 `;
