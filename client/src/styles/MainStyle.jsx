@@ -60,7 +60,7 @@ export const MainMacBookImageFrame = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: fit-content;
+  height: 1000px;
   clip-path: inset(0% 30%);
   transform: translateY(-25%);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -105,5 +105,21 @@ export const SlidingIntroItem = styled.div`
     margin: 0;
     padding: 20px 30px;
     color: transparent;
+  }
+`;
+
+export const SlidingIntroExtraContext = styled.div`
+  position: fixed;
+  top: 50%;
+  right: 10%;
+  opacity: 0;
+
+  & > p {
+    font-family: "En Bold";
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    color: #d3d3d3;
   }
 `;

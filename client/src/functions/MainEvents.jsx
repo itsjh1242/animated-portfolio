@@ -31,6 +31,7 @@ function MainEvents() {
       // Sliding Intro
       let slidingIntro = document.querySelectorAll("[data-IntroItem]");
       let slidingIntroViewPort = [1254, 1600, 1900];
+      let slidingIntroExtra = document.querySelector("[data-sliding-extra]");
 
       // Y 128
       if (posY >= 128) {
@@ -80,6 +81,11 @@ function MainEvents() {
           slidingIntro[index].style.color = "transparent";
         }
       });
+      if (posY >= slidingIntroViewPort[0]) {
+        slidingIntroExtra.style.opacity = 1;
+      } else {
+        slidingIntroExtra.style.opacity = 0;
+      }
     });
   };
 }

@@ -23,6 +23,8 @@ const Main = (props) => {
   const [language, setLanguage] = useState("en");
   const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
 
+  const [currentSlidingText, setCurrentSlidingText] = useState(0);
+
   return (
     <>
       {/* MOBILE */}
@@ -51,11 +53,16 @@ const Main = (props) => {
           </S.MainMacBookImageFrame>
           <S.SlidingIntro data-sliding-intro>
             {Config.Landing.SlidingIntro.map((item, index) => (
-              <S.SlidingIntroItem key={index} data-sliding-intro-item>
-                <p data-IntroItem>{item[0]}</p>
-              </S.SlidingIntroItem>
+              <>
+                <S.SlidingIntroItem key={index} data-sliding-intro-item>
+                  <p data-IntroItem>{item[0]}</p>
+                </S.SlidingIntroItem>
+              </>
             ))}
           </S.SlidingIntro>
+          <S.SlidingIntroExtraContext data-sliding-extra>
+            <p>{Config.Landing.SlidingIntro[currentSlidingText][1]}</p>
+          </S.SlidingIntroExtraContext>
         </S.MainMacBookLongFrame>
       </PC>
       <MainEvents />
