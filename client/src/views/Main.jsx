@@ -23,7 +23,19 @@ const Main = (props) => {
   const [language, setLanguage] = useState("en");
   const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
 
-  const [currentSlidingText, setCurrentSlidingText] = useState(0);
+  // View Port Events
+
+  const ViewPort = Config.ScrollEvents.MainPage.SlidingIntro.ViewPort;
+  const [currentViewPortIndex, setCurrentViewPortIndex] = useState(0);
+
+  window.addEventListener("scroll", () => {
+    const posY = window.scrollY;
+    ViewPort.map((item, index) => {
+      if (posY >= item) {
+        setCurrentViewPortIndex(index);
+      }
+    });
+  });
 
   return (
     <>
@@ -32,38 +44,28 @@ const Main = (props) => {
       {/* PC */}
       <PC>
         <G.Nav data-nav>{Config.Information.Name}</G.Nav>
-        <S.LottieScroll>
+        <S.LottieScroll data-lottie-scrolldown>
           <Lottie animationData={LottieScroll} width={100} height={100} />
         </S.LottieScroll>
-        <G.Container>
-          <S.Landing>
-            <S.LandingTitleContainer>
-              <G.Column jc="center" ai="center">
-                <S.LandingTitleTop>{Config.Landing.Title[0]}</S.LandingTitleTop>
-                <S.LandingTitleBottom data-ltb>{Config.Landing.Title[1]}</S.LandingTitleBottom>
-              </G.Column>
-            </S.LandingTitleContainer>
-          </S.Landing>
-        </G.Container>
-        <S.MainMacBookLongFrame>
-          <S.MainMacBookImageFrame data-macbook-frame>
-            <S.MainMacBookImage data-macbook-image>
+        <G.Frame>
+          <S.LandingTitleContainer>
+            <G.Column jc="center" ai="center">
+              <S.LandingTitleTop>{Config.Landing.Title[0]}</S.LandingTitleTop>
+              <S.LandingTitleBottom data-landing-title-bottom>{Config.Landing.Title[1]}</S.LandingTitleBottom>
+            </G.Column>
+          </S.LandingTitleContainer>
+        </G.Frame>
+        <S.LongFrame>
+          <S.FirstImageFrame data-first-image-frame>
+            <S.FirstImage data-first-image>
               <img src={Config.Image.MainMacBook} alt="Main MacBook" />
-            </S.MainMacBookImage>
-          </S.MainMacBookImageFrame>
-          <S.SlidingIntro data-sliding-intro>
-            {Config.Landing.SlidingIntro.map((item, index) => (
-              <>
-                <S.SlidingIntroItem key={index} data-sliding-intro-item>
-                  <p data-IntroItem>{item[0]}</p>
-                </S.SlidingIntroItem>
-              </>
-            ))}
-          </S.SlidingIntro>
-          <S.SlidingIntroExtraContext data-sliding-extra>
-            <p>{Config.Landing.SlidingIntro[currentSlidingText][1]}</p>
-          </S.SlidingIntroExtraContext>
-        </S.MainMacBookLongFrame>
+            </S.FirstImage>
+            <S.FirstImageText data-first-image-text>
+              <p>{Config.Landing.SlidingIntro}</p>
+            </S.FirstImageText>
+          </S.FirstImageFrame>
+        </S.LongFrame>
+        <G.Frame></G.Frame>
       </PC>
       <MainEvents />
     </>

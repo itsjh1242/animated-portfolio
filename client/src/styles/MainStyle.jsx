@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const Landing = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 30px 60px;
-`;
-
 export const LandingTitleContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -42,34 +36,35 @@ export const LandingTitleBottom = styled.p`
 export const LottieScroll = styled.div`
   position: absolute;
   background-color: transparent;
-  position: absolute;
   width: fit-content;
   height: fit-content;
-  bottom: 0;
+  top: 0;
   right: 0;
+  transition: all 1s ease-in-out;
 `;
 
-export const MainMacBookLongFrame = styled.div`
-  width: 100%;
-  height: 100%;
+export const LongFrame = styled.div`
+  width: 100vw;
+  height: 350vh;
 `;
 
-export const MainMacBookImageFrame = styled.div`
+export const FirstImageFrame = styled.div`
   position: relative;
+  top: -200px;
+  left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  height: 1000px;
+  height: 100%;
   clip-path: inset(0% 30%);
-  transform: translateY(-25%);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s ease-in-out, clip-path 0.1s ease-in-out, height 0.1s ease-in-out;
 `;
 
-export const MainMacBookImage = styled.div`
+export const FirstImage = styled.div`
   width: 100%;
-  height: 500px;
-  transition: all 1s ease-in-out;
+  height: 14%;
 
   & > img {
     width: 100%;
@@ -78,48 +73,21 @@ export const MainMacBookImage = styled.div`
   }
 `;
 
-export const SlidingIntro = styled.div`
-  position: relative;
-  bottom: 0;
+export const FirstImageText = styled.div`
+  position: absolute;
+  bottom: 1%;
   left: 0;
-  display: flex;
-  flex-direction: column;
   width: 100%;
-
-  transform: translateY(1000px);
-`;
-
-export const SlidingIntroItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 60%;
-  height: 100%;
+  height: auto;
+  transition: opacity 1s ease-in-out;
 
   & > p {
-    transition: all 1s ease-in-out;
+    white-space: pre-wrap;
+    text-align: center;
     font-family: "En Bold";
     font-size: 80px;
-    line-height: 80px;
-    margin: 0;
-    padding: 20px 30px;
-    color: transparent;
-  }
-`;
-
-export const SlidingIntroExtraContext = styled.div`
-  position: fixed;
-  top: 50%;
-  right: 10%;
-  opacity: 0;
-
-  & > p {
-    font-family: "En Bold";
-    font-size: 20px;
-    line-height: 20px;
-    margin: 0;
-    padding: 0;
-    color: #d3d3d3;
+    line-height: 70px;
+    color: #ffffff;
+    text-transform: uppercase;
   }
 `;

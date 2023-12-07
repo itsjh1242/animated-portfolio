@@ -5,6 +5,13 @@ export const Ko_Configuration = {
 };
 
 export const En_Configuration = {
+  ScrollEvents: {
+    MainPage: {
+      SlidingIntro: {
+        ViewPort: [1254, 1600, 1900],
+      },
+    },
+  },
   Image: {
     MainMacBook: "./images/MacBookGradationGrey.png",
   },
@@ -14,10 +21,6 @@ export const En_Configuration = {
   //   Landing Page
   Landing: {
     Title: ["KIM JUN HYEON", "PORTFOLIO WEBSITE"],
-    SlidingIntro: [
-      ["I AM A FRONT-END DEVELOPER", "Extra Desc"],
-      ["I AM A UI/UX DESIGNER", "Extra Desc"],
-      ["THIS IS STYLISH PORTFOLIO WEBSITE THAT I MADE", "Extra Desc"],
-    ],
+    SlidingIntro: "I am a Front-End Developer,\nAND UI/UX Designer, This is my Portfolio Website.",
   },
 };

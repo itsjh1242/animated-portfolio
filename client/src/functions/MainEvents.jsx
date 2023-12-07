@@ -1,13 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+// Configurations
+import * as Configuration from "../config";
 
 function MainEvents() {
+  // Languages Default Changer
+  const [language, setLanguage] = useState("en");
+  const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
+
+  // Events Define
   window.onload = function () {
     // 마우스 커서 이벤트
     const cursorDot = document.querySelector("[data-cursor-dot]");
     const cursorOutline = document.querySelector("[data-cursor-outline]");
     // Landing Title Bottom Element
-    const ltb = document.querySelector("[data-ltb]");
+    const ltb = document.querySelector("[data-landing-title-bottom]");
     ltb.addEventListener("mouseover", () => {
       cursorDot.style.display = "none";
       cursorOutline.style.transform = "scale(2) translate(-50%, -50%)";
@@ -19,72 +26,66 @@ function MainEvents() {
       cursorOutline.style.backgroundColor = "transparent";
     });
 
-    // Scroll Event
-    window.addEventListener("scroll", () => {
-      console.log(window.scrollY);
-      let posY = window.scrollY;
-      let posX = window.scrollX;
-      // Main MacBook Image Effect
-      let macBookImageScroll = 522;
-      let clipPathValue = 30;
-      let macBookImageHeight = 500;
-      // Sliding Intro
-      let slidingIntro = document.querySelectorAll("[data-IntroItem]");
-      let slidingIntroViewPort = [1254, 1600, 1900];
-      let slidingIntroExtra = document.querySelector("[data-sliding-extra]");
-
-      // Y 128
-      if (posY >= 128) {
-        document.querySelector("[data-nav]").style.opacity = 0;
-      } else {
-        document.querySelector("[data-nav]").style.opacity = 1;
-      }
-      // Y 604
-      let dmf = document.querySelector("[data-macbook-frame]");
-      let dmi = document.querySelector("[data-macbook-image]");
-      if (posY < macBookImageScroll) {
-        // Style
-        dmf.style.position = "relative";
-        dmf.style.top = "0";
-        dmf.style.left = "0";
-        dmf.style.transform = "translate(0, 0)";
-        dmf.style.clipPath = `inset(0% 30%)`;
-        dmf.style.transform = "translateY(-25%)";
-      }
-      // Image Mouse Scroll Event
-      if (posY >= macBookImageScroll) {
-        // Style
-        dmf.style.position = "fixed";
-        dmf.style.top = "50%";
-        dmf.style.left = "50%";
-        dmf.style.transform = "translate(-50%, -50%)";
-        // Effect of Image Width
-        clipPathValue = clipPathValue - (posY - macBookImageScroll) * 0.07;
-        dmf.style.clipPath = `inset(0% ${clipPathValue}%)`;
-        // 스크롤 시 현재 스크린 화면 높이에 맞춰서 이미지 높이 조절
-        macBookImageHeight = Math.min(window.screen.height, macBookImageHeight + (posY - 604) * 0.5);
-        dmi.style.height = `${macBookImageHeight}px`;
-        if (posY >= window.screen.height) {
-          dmi.style.opacity = 0.2;
+    // Observe
+    // Elements
+    const fi = document.querySelector("[data-first-image]");
+    const fif = document.querySelector("[data-first-image-frame]");
+    const nav = document.querySelector("[data-nav]");
+    let fiClipPath = 30;
+    let firstImageControl = true;
+    // First Image Events
+    const ltbObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          const currentPosY = window.scrollY;
+          nav.style.opacity = 0;
+          firstImageControl = true;
+          fi.style.position = "fixed";
+          fi.style.top = "50%";
+          fi.style.left = "50%";
+          fi.style.transform = "translate(-50%, -50%)";
+          window.addEventListener("scroll", () => {
+            if (firstImageControl) {
+              fiClipPath = Math.max(0, 30 - (window.scrollY - currentPosY) * 0.02);
+              fiClipPath <= 15 ? (fif.style.opacity = 0.5) : (fif.style.opacity = 1);
+              fi.style.height = Math.min(window.screen.height, window.scrollY * 0.2 + 300) + "px";
+              fif.style.clipPath = `inset(0% ${fiClipPath}%)`;
+            }
+          });
         } else {
-          dmi.style.opacity = 1;
-        }
-      } else {
-        dmi.style.height = "500px";
-      }
-
-      // Sliding Intro Effect
-      slidingIntroViewPort.forEach((item, index) => {
-        if (posY >= item) {
-          slidingIntro[index].style.color = "#d3d3d3";
-        } else {
-          slidingIntro[index].style.color = "transparent";
+          nav.style.opacity = 1;
+          fi.style.position = "relative";
+          fi.style.top = "0";
+          fi.style.left = "0";
+          fi.style.transform = "translate(0, 0)";
+          fi.style.width = "100%";
+          fi.style.height = "14%";
+          firstImageControl = false;
+          fif.style.clipPath = `inset(0% 30%)`;
         }
       });
-      if (posY >= slidingIntroViewPort[0]) {
-        slidingIntroExtra.style.opacity = 1;
+    }).observe(ltb);
+    // First Image Text Events
+    const fit = document.querySelector("[data-first-image-text]");
+    const fitObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          fit.style.opacity = 0;
+        } else {
+          fit.style.opacity = 1;
+        }
+      });
+    }).observe(fit);
+    // Scroll Event
+    // Scroll Elements
+    const lottieScrollDown = document.querySelector("[data-lottie-scrolldown]");
+    window.addEventListener("scroll", () => {
+      let posY = window.scrollY;
+      // Lottie-ScrollDown, PosY >= 20, display none
+      if (posY >= 20) {
+        lottieScrollDown.style.opacity = 0;
       } else {
-        slidingIntroExtra.style.opacity = 0;
+        lottieScrollDown.style.opacity = 1;
       }
     });
   };

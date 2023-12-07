@@ -7,6 +7,9 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+    html {
+      scroll-behavior: smooth;
+    }
     a {
         color: inherit;
         text-decoration: none;
@@ -39,6 +42,15 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
+export const Frame = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 30px 60px;
+`;
+
 export const Nav = styled.div`
   width: 100%;
   padding: 30px 60px;
@@ -48,12 +60,6 @@ export const Nav = styled.div`
   font-family: "En Medium";
   font-size: 30px;
   transition: all 0.5s ease-in-out;
-`;
-
-export const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
 `;
 
 export const Row = styled.div`
