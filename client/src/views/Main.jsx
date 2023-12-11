@@ -10,6 +10,8 @@ import "../styles/Font.css";
 // Styles
 import * as G from "../styles/GlobalStyle";
 import * as S from "../styles/MainStyle";
+// keyframes
+import * as KeyFrames from "../styles/Keyframes.css";
 
 // Lottie
 import Lottie from "lottie-react";
@@ -30,7 +32,7 @@ const Main = (props) => {
 
   window.addEventListener("scroll", () => {
     const posY = window.scrollY;
-    ViewPort.map((item, index) => {
+    ViewPort.map((item, index) => () => {
       if (posY >= item) {
         setCurrentViewPortIndex(index);
       }
@@ -43,11 +45,10 @@ const Main = (props) => {
       <Mobile>mobile</Mobile>
       {/* PC */}
       <PC>
-        <G.Nav data-nav>{Config.Information.Name}</G.Nav>
         <S.LottieScroll data-lottie-scrolldown>
           <Lottie animationData={LottieScroll} width={100} height={100} />
         </S.LottieScroll>
-        <G.Frame>
+        <G.Frame width="100%" height="80vh">
           <S.LandingTitleContainer>
             <G.Column jc="center" ai="center">
               <S.LandingTitleTop>{Config.Landing.Title[0]}</S.LandingTitleTop>
@@ -58,14 +59,45 @@ const Main = (props) => {
         <S.LongFrame>
           <S.FirstImageFrame data-first-image-frame>
             <S.FirstImage data-first-image>
-              <img src={Config.Image.MainMacBook} alt="Main MacBook" />
+              <img data-first-image-this src={Config.Image.MainMacBook} alt="Main MacBook" />
             </S.FirstImage>
             <S.FirstImageText data-first-image-text>
               <p>{Config.Landing.SlidingIntro}</p>
             </S.FirstImageText>
           </S.FirstImageFrame>
         </S.LongFrame>
-        <G.Frame></G.Frame>
+        <G.Frame width="100%" height="100%" data-first-section-end>
+          <S.FirstExtraSection>
+            {Config.Landing.FirstSection.map((item, index) => {
+              return (
+                <p data-first-section-context key={index}>
+                  {item}
+                </p>
+              );
+            })}
+          </S.FirstExtraSection>
+        </G.Frame>
+        {/* Second Section */}
+        {/* Define: Scroll Animation Display - Skills / Stacks */}
+        <G.Frame width="100%" height="100vh">
+          <S.SecondSection data-second-section>
+            <S.SecondSectionBackground data-second-section-bg></S.SecondSectionBackground>
+            <S.SecondSectionTitle data-second-section-title>&lt;STACKS /&gt;</S.SecondSectionTitle>
+            <S.SecondSectionGrid>
+              {Config.Landing.SecondSectionSkills.map((item, index) => {
+                return (
+                  <S.SecondSectionGridItem data-second-section-grid-item key={index} id={item[1]}>
+                    <div className="imgBox">
+                      <img src={"./stacks/" + item[1] + ".png"} alt=""></img>
+                    </div>
+                    <p>{item[0]}</p>
+                  </S.SecondSectionGridItem>
+                );
+              })}
+            </S.SecondSectionGrid>
+          </S.SecondSection>
+        </G.Frame>
+        <G.Frame width="100%" height="100vh"></G.Frame>
       </PC>
       <MainEvents />
     </>

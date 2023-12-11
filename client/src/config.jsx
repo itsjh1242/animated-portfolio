@@ -21,6 +21,24 @@ export const En_Configuration = {
   //   Landing Page
   Landing: {
     Title: ["KIM JUN HYEON", "PORTFOLIO WEBSITE"],
-    SlidingIntro: "I am a Front-End Developer,\nAND UI/UX Designer, This is my Portfolio Website.",
+    SlidingIntro: "I am a Front-End Developer\nAND UI/UX Designer\nThis is my Portfolio Website.",
+    FirstSection: ["2023", "PORTFOLIO WEBSITE", "This template pages are a playground for creativity. I hope you enjoy this!"],
+    SecondSectionSkills: [
+      ["PYTHON", "python"],
+      ["ANDROIDSTUDIO", "androidstudio"],
+      ["FLUTTER", "flutter"],
+      ["HTML", "html"],
+      ["CSS", "css"],
+      ["JAVASCRIPT", "javascript"],
+      ["REACT", "react"],
+      ["NODEJS", "nodejs"],
+      ["MYSQL", "mysql"],
+      ["FIREBASE", "firebase"],
+      ["GIT", "git"],
+      ["GITHUB", "github"],
+      ["AWS", "aws"],
+      ["FIGMA", "figma"],
+      ["PHOTOSHOP", "photoshop"],
+    ],
   },
 };

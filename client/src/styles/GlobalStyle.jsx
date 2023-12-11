@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     html {
       scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
     }
     a {
         color: inherit;
@@ -46,17 +47,21 @@ export const Frame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  padding: 30px 60px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  padding: 15px 30px 0 30px;
 `;
 
 export const Nav = styled.div`
-  width: 100%;
-  padding: 30px 60px;
+  z-index: 100;
+  width: fill-content;
+  height: fill-content;
+  margin: 15px 30px;
+  padding: 5px 5px;
   position: fixed;
   top: 0;
   left: 0;
+  border-radius: 20px;
   font-family: "En Medium";
   font-size: 30px;
   transition: all 0.5s ease-in-out;
@@ -76,4 +81,10 @@ export const Column = styled.div`
   flex-direction: column;
   justify-content: ${(props) => props.jc};
   align-items: ${(props) => props.ai};
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
 `;

@@ -31,13 +31,36 @@ const CursorOutline = styled.div`
 
 function MouseTracker() {
   useEffect(() => {
+    // Mouse Position
+    const getMousePos = (e) => {
+      return {
+        x: e.clientX,
+        y: e.clientY,
+      };
+    };
+
     // 마우스 커서 이벤트
     const cursorDot = document.querySelector("[data-cursor-dot]");
     const cursorOutline = document.querySelector("[data-cursor-outline]");
 
-    const updateMousePosition = (e) => {
-      const posX = e.clientX;
-      const posY = e.clientY;
+    // Nav OnMouseOver Events
+    const nav = document.querySelector("[data-nav]");
+    const NavMouseOver = (e) => {
+      cursorDot.style.display = "none";
+      cursorOutline.style.display = "none";
+      nav.style.background = "#ffffff";
+      nav.style.color = "#000000";
+    };
+    const NavMouseLeave = () => {
+      cursorDot.style.display = "block";
+      cursorOutline.style.display = "block";
+      nav.style.background = "transparent";
+      nav.style.color = "#ffffff";
+    };
+
+    const handleCursorEffect = (e) => {
+      const posX = getMousePos(e).x;
+      const posY = getMousePos(e).y;
 
       cursorDot.style.left = `${posX}px`;
       cursorDot.style.top = `${posY}px`;
@@ -50,6 +73,7 @@ function MouseTracker() {
         { duration: 500, fill: "forwards" }
       );
     };
+
     // 마우스 커서 클릭 이벤트
     const handleMouseActive = () => {
       cursorOutline.style.width = "50px";
@@ -61,14 +85,18 @@ function MouseTracker() {
       cursorOutline.style.height = "30px";
     };
 
-    document.addEventListener("mousemove", updateMousePosition);
+    document.addEventListener("mousemove", handleCursorEffect);
     document.addEventListener("mousedown", handleMouseActive);
     document.addEventListener("mouseup", handleMouseInactive);
+    nav.addEventListener("mouseover", NavMouseOver);
+    nav.addEventListener("mouseleave", NavMouseLeave);
 
     return () => {
-      document.removeEventListener("mousemove", updateMousePosition);
+      document.removeEventListener("mousemove", handleCursorEffect);
       document.removeEventListener("mousedown", handleMouseActive);
       document.removeEventListener("mouseup", handleMouseInactive);
+      nav.removeEventListener("mouseover", NavMouseOver);
+      nav.removeEventListener("mouseleave", NavMouseLeave);
     };
   }, []);
 
