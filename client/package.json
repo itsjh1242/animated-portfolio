@@ -7,6 +7,8 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "animate.css": "^4.1.1",
+    "framer-motion": "^10.16.16",
     "latest": "^0.2.0",
     "lottie-react": "^2.4.0",
     "npm": "^10.2.4",

@@ -2,6 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 // Configurations
 import * as Configuration from "../config";
+// Animate
+import "animate.css";
 
 // Bounce Effect
 export function ObserverBounce(target) {
@@ -34,6 +36,19 @@ export function ObserverWidth(target, startWidth) {
         target.style.width = "100%";
       } else if (!entry.isIntersecting && posY <= elementOffsetTop) {
         target.style.width = startWidth;
+      }
+    });
+  });
+  observer.observe(target);
+}
+
+// Back In Up
+export function ObserverBackInUp(element, target) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        element.style.opacity = 1;
+        element.style.animation = "backInUp 1s ease-in-out forwards";
       }
     });
   });

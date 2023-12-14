@@ -125,89 +125,127 @@ export const FirstExtraSection = styled.div`
 // Scroll Display of Stacks/ Skills
 export const SecondSection = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
-  position: absolute;
-  width: 50vw;
-  height: 100%;
-  transition: width 0.5s ease-in-out, opactiy 0.5s ease-in-out;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
-
-export const SecondSectionBackground = styled.div`
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  grid-gap: 40px;
-  place-items: center center;
-  position: absolute;
-  z-index: -1;
+  position: relative;
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
+`;
 
+export const SecondSectionStack = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 40px;
+  place-items: center center;
+  width: 100%;
+  height: 100%;
+`;
+
+export const SecondSectionStackItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   & > p {
-    text-align: center;
     font-family: "En Bold";
-    font-size: 80px;
-    color: #ffffff;
-    transition: all 0.5s ease-in-out;
+    font-size: calc(16px + 0.8vw);
+    color: #6f6f6f;
+    text-align: center;
   }
 `;
 
-export const SecondSectionTitle = styled.p`
-  font-family: "En Bold";
-  font-size: 40px;
-  color: #ffffff;
-  transition: all 0.5s ease-in-out;
-  mix-blend-mode: difference;
-`;
-
-export const SecondSectionGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 80px;
-  place-items: center center;
+// Work Section
+export const WorkSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   height: 100%;
-  padding: 2%;
 `;
 
-export const SecondSectionGridItem = styled.div`
+export const WorkSectionGrid = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-gap: 80px;
+  place-items: start center;
+  width: 100%;
+  height: 100%;
+  padding-top: 5%;
+`;
+
+export const WorkSectionGridItem = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 65%;
   transition: all 0.5s ease-in-out;
-  border-radius: 20px;
+  overflow: hidden;
 
   & > .imgBox {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     transition: all 0.5s ease-in-out;
   }
-
   & > .imgBox img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: top;
+    transition: all 1s ease-in-out;
   }
 
-  & > p {
-    text-align: center;
-    font-family: "Ko Bold";
-    font-size: 24px;
-    color: #ffffff;
-    transition: all 0.5s ease-in-out;
-    mix-blend-mode: difference;
+  &:nth-child(1) {
+    width: 70%;
+    height: 100%;
+    & p:nth-child(1) {
+      text-align: center;
+      font-family: "Ko Bold";
+      font-size: calc(24px + 0.5vw);
+      color: #ffffff;
+    }
+    & p:nth-child(2) {
+      text-align: center;
+      font-family: "Ko Medium";
+      font-size: calc(16px + 0.5vw);
+      color: #6f6f6f;
+    }
   }
+  &:nth-child(2) {
+    transform: translateX(20%);
+  }
+  &:nth-child(2),
+  &:nth-child(3) {
+    & p:nth-child(1) {
+      text-align: center;
+      font-family: "Ko Bold";
+      font-size: calc(12px + 0.5vw);
+      color: #ffffff;
+    }
+    & p:nth-child(2) {
+      text-align: center;
+      font-family: "Ko Medium";
+      font-size: calc(8px + 0.5vw);
+      color: #6f6f6f;
+    }
+  }
+`;
+
+export const WorkSectionGridItemText = styled.div`
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
 `;

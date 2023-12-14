@@ -6,16 +6,21 @@ import Cursor from "./functions/Cursor";
 
 // React
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 // Views
 import Main from "./views/Main";
+import Test from "./views/Test";
 
 // Configurations
 import * as Configuration from "./config";
 
 // Styles
 import * as G from "./styles/GlobalStyle";
+// keyframes
+import * as KeyFrames from "./styles/Keyframes.css";
+// Page Transition
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const [language, setLanguage] = useState("en");
@@ -44,19 +49,20 @@ function App() {
       nav.removeEventListener("mouseleave", NavMouseLeave);
     };
   });
-
+  const location = useLocation();
   return (
     <>
-      <BrowserRouter>
-        <GlobalStyle />
-        <Cursor />
-        <G.Nav data-nav>
-          <p data-nav-context>{Config.Information.Name}</p>
-        </G.Nav>
-        <Routes>
-          <Route path="/" element={<Main />} />
+      <GlobalStyle />
+      <Cursor />
+      <G.Nav data-nav>
+        <p data-nav-context>{Config.Information.Name}</p>
+      </G.Nav>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route index element={<Main Config={Config} />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
-      </BrowserRouter>
+      </AnimatePresence>
     </>
   );
 }

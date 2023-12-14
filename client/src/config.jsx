@@ -40,5 +40,12 @@ export const En_Configuration = {
       ["FIGMA", "figma"],
       ["PHOTOSHOP", "photoshop"],
     ],
+    WorkSection: {
+      MainDisplay: [
+        ["Work1", "긍정적 감정 유발을 위한\nAI 챗봇 기반 일기작성시스템", "졸업 프로젝트"],
+        ["Work2", "모션 인식 기반의\n이중 암호 인증 방안", "AI+X 융합연구"],
+        ["Work3", "지문 인식 기반\n출석 관리 시스템", "AI+X 융합연구"],
+      ],
+    },
   },
 };

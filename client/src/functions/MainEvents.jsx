@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-// Configurations
-import * as Configuration from "../config";
+
 // Observer Events
 import * as OBS from "../functions/Observer";
+// Animate
+import "animate.css";
 
-function MainEvents() {
+const MainEvents = (props) => {
+  const Config = props.Config;
   let posY = window.scrollY;
-  // Languages Default Changer
-  const [language, setLanguage] = useState("en");
-  const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
 
   // Events Define
   window.onload = function () {
@@ -111,15 +110,56 @@ function MainEvents() {
 
     // Second Section Events
     // End of first section events
-    const secondSection = document.querySelector("[data-second-section]");
-    const secondSectionBg = document.querySelector("[data-second-section-bg]");
-    const secondSectionTitle = document.querySelector("[data-second-section-title]");
-    OBS.ObserverWidth(secondSection, "50%");
-    // Stacks Items
-    const stacksItems = document.querySelectorAll("[data-second-section-grid-item]");
-    StackItemEvent(secondSectionTitle, secondSectionBg, stacksItems, cursorDot, cursorOutline);
+    const secondSectionStackItem = document.querySelectorAll("[data-second-section-stack-item]");
+    secondSectionStackItem.forEach((item) => {
+      item.addEventListener("mouseover", () => {
+        item.style.opacity = 0;
+        cursorDot.children[0].innerText = item.id;
+        cursorDot.children[0].style.fontSize = "2rem";
+        cursorOutline.style.border = "none";
+        cursorOutline.style.borderRadius = "0";
+        cursorOutline.style.width = "200px";
+        cursorOutline.style.height = "200px";
+        cursorOutline.style.backgroundImage = "url(./stacks/" + item.id + ".png)";
+      });
+      item.addEventListener("mouseleave", () => {
+        item.style.opacity = 1;
+        cursorDot.children[0].innerText = "";
+        cursorOutline.style.border = "1px solid #d3d3d3";
+        cursorOutline.style.borderRadius = "50%";
+        cursorOutline.style.width = "30px";
+        cursorOutline.style.height = "30px";
+        cursorOutline.style.backgroundImage = "none";
+      });
+    });
+
+    // Work Section Events
+    const workSectionGrid = document.querySelector("[data-work-section-grid]");
+    const workSectionGridItem = document.querySelectorAll("[data-work-section-grid-item]");
+    workSectionGridItem.forEach((item) => {
+      OBS.ObserverBackInUp(item, workSectionGrid);
+      item.addEventListener("mouseover", () => {
+        item.children[0].children[0].style.transform = "scale(1.2)";
+        item.children[1].style.opacity = 0.8;
+        item.children[1].style.animation = "opacityBottomToTop 1s ease-in-out";
+        cursorOutline.style.width = "120px";
+        cursorOutline.style.height = "120px";
+        cursorOutline.style.backdropFilter = "blur(10px)";
+        cursorOutline.style.mixBlendMode = "normal";
+        cursorDot.children[0].innerText = "[OPEN]";
+      });
+      item.addEventListener("mouseleave", () => {
+        item.children[0].children[0].style.transform = "scale(1)";
+        item.children[1].style.opacity = 0;
+        item.children[1].style.animation = "none";
+        cursorOutline.style.width = "30px";
+        cursorOutline.style.height = "30px";
+        cursorOutline.style.backdropFilter = "blur(0px)";
+        cursorDot.children[0].innerText = "";
+      });
+    });
   };
-}
+};
 
 function CursorScaleEvent(cursorDot, cursorOutline, method) {
   if (method === "over") {
@@ -131,33 +171,6 @@ function CursorScaleEvent(cursorDot, cursorOutline, method) {
     cursorOutline.style.transform = "scale(1) translate(-50%, -50%)";
     cursorOutline.style.backgroundColor = "transparent";
   }
-}
-
-function StackItemEvent(title, section, items, cursorDot, cursorOutline) {
-  // Cursor Event
-  items.forEach((item) => {
-    item.children[0].addEventListener("mouseover", () => {
-      title.style.opacity = 0;
-      section.style.opacity = 1;
-      section.style.animation = "bgLeftToRight 5s ease-in-out forwards";
-      items.forEach((item_) => {
-        item_.style.opacity = 0;
-      });
-      cursorDot.style.display = "none";
-      cursorOutline.style.display = "none";
-      item.children[0].style.transform = "scale(1.1)";
-    });
-    item.children[0].addEventListener("mouseleave", () => {
-      title.style.opacity = 1;
-      section.style.opacity = 0;
-      items.forEach((item_) => {
-        item_.style.opacity = 1;
-      });
-      cursorDot.style.display = "block";
-      cursorOutline.style.display = "block ";
-      item.children[0].style.transform = "scale(1)";
-    });
-  });
 }
 
 export default MainEvents;

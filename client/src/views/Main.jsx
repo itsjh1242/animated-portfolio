@@ -2,28 +2,27 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { Mobile, PC } from "../functions/DeviceDectect";
-import * as Configuration from "../config";
-
 // Font
 import "../styles/Font.css";
-
 // Styles
 import * as G from "../styles/GlobalStyle";
 import * as S from "../styles/MainStyle";
 // keyframes
 import * as KeyFrames from "../styles/Keyframes.css";
+// Page Transition
+import PageTransition from "../functions/PageTransition";
 
 // Lottie
 import Lottie from "lottie-react";
 // Lottie Json
 import * as LottieScroll from "../lotties/scroll.json";
-
 // Events
 import MainEvents from "../functions/MainEvents";
+// Motion
+import { motion } from "framer-motion";
 
 const Main = (props) => {
-  const [language, setLanguage] = useState("en");
-  const Config = language ? Configuration.En_Configuration : Configuration.Ko_Configuration;
+  const Config = props.Config;
 
   // View Port Events
 
@@ -45,6 +44,13 @@ const Main = (props) => {
       <Mobile>mobile</Mobile>
       {/* PC */}
       <PC>
+        <motion.div
+          className="slide-in"
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 0 }}
+          exit={{ scaleY: 1 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+        />
         <S.LottieScroll data-lottie-scrolldown>
           <Lottie animationData={LottieScroll} width={100} height={100} />
         </S.LottieScroll>
@@ -80,26 +86,47 @@ const Main = (props) => {
         {/* Second Section */}
         {/* Define: Scroll Animation Display - Skills / Stacks */}
         <G.Frame width="100%" height="100vh">
-          <S.SecondSection data-second-section>
-            <S.SecondSectionBackground data-second-section-bg></S.SecondSectionBackground>
-            <S.SecondSectionTitle data-second-section-title>&lt;STACKS /&gt;</S.SecondSectionTitle>
-            <S.SecondSectionGrid>
+          <S.SecondSection>
+            <S.SecondSectionStack>
               {Config.Landing.SecondSectionSkills.map((item, index) => {
                 return (
-                  <S.SecondSectionGridItem data-second-section-grid-item key={index} id={item[1]}>
-                    <div className="imgBox">
-                      <img src={"./stacks/" + item[1] + ".png"} alt=""></img>
-                    </div>
-                    <p>{item[0]}</p>
-                  </S.SecondSectionGridItem>
+                  <S.SecondSectionStackItem id={item[1]} key={index} data-second-section-stack-item>
+                    <p>{item[0][0]}</p>
+                  </S.SecondSectionStackItem>
                 );
               })}
-            </S.SecondSectionGrid>
+            </S.SecondSectionStack>
           </S.SecondSection>
         </G.Frame>
-        <G.Frame width="100%" height="100vh"></G.Frame>
+        {/* Work Section - Grid */}
+        <G.Frame width="100%" height="100vh">
+          <S.WorkSection>
+            <S.WorkSectionGrid data-work-section-grid>
+              {Config.Landing.WorkSection.MainDisplay.map((item, index) => {
+                return (
+                  <S.WorkSectionGridItem key={index} data-work-section-grid-item>
+                    <div className="imgBox">
+                      <img src={"./images/main/" + item[0] + ".png"} alt=""></img>
+                    </div>
+                    <S.WorkSectionGridItemText>
+                      <p>{item[1]}</p>
+                      <p>{item[2]}</p>
+                    </S.WorkSectionGridItemText>
+                  </S.WorkSectionGridItem>
+                );
+              })}
+            </S.WorkSectionGrid>
+          </S.WorkSection>
+        </G.Frame>
+        <motion.div
+          className="slide-out"
+          initial={{ scaleY: 1 }}
+          animate={{ scaleY: 0 }}
+          exit={{ scaleY: 0 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+        />
       </PC>
-      <MainEvents />
+      <MainEvents Config={Config} />
     </>
   );
 };

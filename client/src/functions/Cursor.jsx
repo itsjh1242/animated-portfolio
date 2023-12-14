@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const CursorDot = styled.div`
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,6 +15,17 @@ const CursorDot = styled.div`
   width: 8px;
   height: 8px;
   background-color: #d3d3d3;
+
+  & > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "En Bold";
+    font-size: 18px;
+    line-height: 10px;
+    color: #ffffff;
+  }
 `;
 
 const CursorOutline = styled.div`
@@ -20,13 +34,17 @@ const CursorOutline = styled.div`
   left: 0;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  z-index: 999;
+  z-index: 998;
   pointer-events: none;
   width: 30px;
   height: 30px;
   border: 2px solid hsla(0, 0%, 100%, 0.5);
-  transition: all 150ms ease-out;
+  transition: all 150ms ease-out, width 0.5s ease-out, height 0.5s ease-out;
   mix-blend-mode: difference;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-filter: blur(4px);
 `;
 
 function MouseTracker() {
@@ -102,7 +120,9 @@ function MouseTracker() {
 
   return (
     <>
-      <CursorDot data-cursor-dot />
+      <CursorDot data-cursor-dot>
+        <p></p>
+      </CursorDot>
       <CursorOutline data-cursor-outline />
     </>
   );
