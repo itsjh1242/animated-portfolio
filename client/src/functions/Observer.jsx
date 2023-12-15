@@ -54,3 +54,32 @@ export function ObserverBackInUp(element, target) {
   });
   observer.observe(target);
 }
+
+// Main Page Background Context Fade in
+export function ObserverMainPageBackgroundFadeIn(target, element) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        element.style.opacity = 1;
+      } else {
+        element.style.opacity = 0;
+      }
+    });
+  });
+  observer.observe(target);
+}
+
+// Main Page Work Item Opacity/Scale Event
+export function ObserverMainPageWorkItemEvents(target, index) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        target.style.opacity = 1;
+        index % 2 === 0
+          ? (target.children[0].style.transform = "translateX(-15%)") && (target.children[1].style.opacity = "1")
+          : (target.children[1].style.transform = "translateX(15%)") && (target.children[0].style.opacity = "1");
+      }
+    });
+  });
+  observer.observe(target);
+}

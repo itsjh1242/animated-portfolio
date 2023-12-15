@@ -110,6 +110,9 @@ const MainEvents = (props) => {
 
     // Second Section Events
     // End of first section events
+    const secondSectionStack = document.querySelector("[data-second-section-stack]");
+    const secondSectionBgContext = document.querySelector("[data-second-section-bg-context]");
+    OBS.ObserverMainPageBackgroundFadeIn(secondSectionStack, secondSectionBgContext);
     const secondSectionStackItem = document.querySelectorAll("[data-second-section-stack-item]");
     secondSectionStackItem.forEach((item) => {
       item.addEventListener("mouseover", () => {
@@ -134,28 +137,24 @@ const MainEvents = (props) => {
     });
 
     // Work Section Events
-    const workSectionGrid = document.querySelector("[data-work-section-grid]");
-    const workSectionGridItem = document.querySelectorAll("[data-work-section-grid-item]");
-    workSectionGridItem.forEach((item) => {
-      OBS.ObserverBackInUp(item, workSectionGrid);
-      item.addEventListener("mouseover", () => {
-        item.children[0].children[0].style.transform = "scale(1.2)";
-        item.children[1].style.opacity = 0.8;
-        item.children[1].style.animation = "opacityBottomToTop 1s ease-in-out";
-        cursorOutline.style.width = "120px";
-        cursorOutline.style.height = "120px";
-        cursorOutline.style.backdropFilter = "blur(10px)";
-        cursorOutline.style.mixBlendMode = "normal";
+    const workSection = document.querySelector("[data-work-section]");
+    const workSectionBgContext = document.querySelector("[data-work-section-bg-context]");
+    OBS.ObserverMainPageBackgroundFadeIn(workSection, workSectionBgContext);
+    // Work Section Item Opacity Events
+    const workSectionItem = document.querySelectorAll("[data-work-section-item]");
+    workSectionItem.forEach((item, index) => {
+      const _item = index % 2 === 0 ? item.children[0] : item.children[1];
+      OBS.ObserverMainPageWorkItemEvents(item, item.id);
+      _item.addEventListener("mouseover", () => {
         cursorDot.children[0].innerText = "[OPEN]";
+        cursorDot.children[0].style.fontSize = "2rem";
+        cursorDot.children[0].style.transition = "all 1s ease-in-out";
+        cursorOutline.style.border = "none";
       });
-      item.addEventListener("mouseleave", () => {
-        item.children[0].children[0].style.transform = "scale(1)";
-        item.children[1].style.opacity = 0;
-        item.children[1].style.animation = "none";
-        cursorOutline.style.width = "30px";
-        cursorOutline.style.height = "30px";
-        cursorOutline.style.backdropFilter = "blur(0px)";
+      _item.addEventListener("mouseleave", () => {
         cursorDot.children[0].innerText = "";
+        cursorDot.children[0].style.fontSize = "1rem";
+        cursorOutline.style.border = "1px solid #d3d3d3";
       });
     });
   };

@@ -87,7 +87,10 @@ const Main = (props) => {
         {/* Define: Scroll Animation Display - Skills / Stacks */}
         <G.Frame width="100%" height="100vh">
           <S.SecondSection>
-            <S.SecondSectionStack>
+            <S.SecondSectionBackground data-second-section-bg-context>
+              <p>&lt;Stacks /&gt;</p>
+            </S.SecondSectionBackground>
+            <S.SecondSectionStack data-second-section-stack>
               {Config.Landing.SecondSectionSkills.map((item, index) => {
                 return (
                   <S.SecondSectionStackItem id={item[1]} key={index} data-second-section-stack-item>
@@ -99,23 +102,43 @@ const Main = (props) => {
           </S.SecondSection>
         </G.Frame>
         {/* Work Section - Grid */}
-        <G.Frame width="100%" height="100vh">
-          <S.WorkSection>
-            <S.WorkSectionGrid data-work-section-grid>
-              {Config.Landing.WorkSection.MainDisplay.map((item, index) => {
-                return (
-                  <S.WorkSectionGridItem key={index} data-work-section-grid-item>
-                    <div className="imgBox">
+        <G.Frame width="100vw" height="350vh">
+          <S.WorkSection data-work-section>
+            <S.WorkSectionBackgroundContext data-work-section-bg-context>
+              <p>&lt;Works /&gt;</p>
+            </S.WorkSectionBackgroundContext>
+
+            {Config.Landing.WorkSection.MainDisplay.map((item, index) => {
+              return index % 2 === 0 ? (
+                <>
+                  <S.WorkSectionItem key={index} data-work-section-item id={index}>
+                    <S.ImageBox>
                       <img src={"./images/main/" + item[0] + ".png"} alt=""></img>
-                    </div>
-                    <S.WorkSectionGridItemText>
-                      <p>{item[1]}</p>
-                      <p>{item[2]}</p>
-                    </S.WorkSectionGridItemText>
-                  </S.WorkSectionGridItem>
-                );
-              })}
-            </S.WorkSectionGrid>
+                    </S.ImageBox>
+                    <S.WorkSectionItemContext>
+                      <div>
+                        <p>{item[1]}</p>
+                        <p>{item[2]}</p>
+                      </div>
+                    </S.WorkSectionItemContext>
+                  </S.WorkSectionItem>
+                </>
+              ) : (
+                <>
+                  <S.WorkSectionItem key={index} data-work-section-item id={index}>
+                    <S.WorkSectionItemContext>
+                      <div>
+                        <p>{item[1]}</p>
+                        <p>{item[2]}</p>
+                      </div>
+                    </S.WorkSectionItemContext>
+                    <S.ImageBox>
+                      <img src={"./images/main/" + item[0] + ".png"} alt=""></img>
+                    </S.ImageBox>
+                  </S.WorkSectionItem>
+                </>
+              );
+            })}
           </S.WorkSection>
         </G.Frame>
         <motion.div

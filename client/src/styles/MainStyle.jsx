@@ -132,6 +132,29 @@ export const SecondSection = styled.div`
   height: 100%;
 `;
 
+export const SecondSectionBackground = styled.div`
+  opacity: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: all 1s ease-in-out;
+
+  & > p {
+    position: sticky;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    font-family: "En Bold";
+    font-size: calc(200px + 1vw);
+    color: #ffffff;
+    opacity: 0.1;
+  }
+`;
+
 export const SecondSectionStack = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -159,93 +182,115 @@ export const SecondSectionStackItem = styled.div`
 export const WorkSection = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  position: relative;
+  width: 100vw;
+  height: 100%;
+`;
+
+export const WorkSectionBackgroundContext = styled.div`
+  opacity: 0;
+  z-index: -1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  transition: all 1s ease-in-out;
+
+  & > p {
+    position: sticky;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    font-family: "En Bold";
+    font-size: calc(200px + 1vw);
+    color: #d3d3d3;
+    opacity: 0.1;
+  }
+`;
+
+export const WorkSectionItem = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: calc(400px + 4vw);
+  transition: all 1s ease-in-out;
+
+  &:nth-child(2) {
+    top: 25%;
+    left: 0;
+    transform: translate(0, 0);
+  }
+  &:nth-child(3) {
+    top: 50%;
+    left: 0;
+    transform: translate(0, 0);
+  }
+  &:nth-child(4) {
+    top: 75%;
+    left: 0;
+    transform: translate(0, 0);
+  }
 `;
 
-export const WorkSectionGrid = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-gap: 80px;
-  place-items: start center;
-  width: 100%;
-  height: 100%;
-  padding-top: 5%;
+export const ImageBox = styled.div`
+  display: absolute;
+  width: 550px;
+  height: 650px;
+  transition: all 1s ease-in-out;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
-export const WorkSectionGridItem = styled.div`
-  position: relative;
+export const WorkSectionItemContext = styled.div`
+  opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  height: 65%;
-  transition: all 0.5s ease-in-out;
-  overflow: hidden;
-
-  & > .imgBox {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-  }
-  & > .imgBox img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: all 1s ease-in-out;
-  }
-
-  &:nth-child(1) {
-    width: 70%;
-    height: 100%;
-    & p:nth-child(1) {
-      text-align: center;
-      font-family: "Ko Bold";
-      font-size: calc(24px + 0.5vw);
-      color: #ffffff;
-    }
-    & p:nth-child(2) {
-      text-align: center;
-      font-family: "Ko Medium";
-      font-size: calc(16px + 0.5vw);
-      color: #6f6f6f;
-    }
-  }
-  &:nth-child(2) {
-    transform: translateX(20%);
-  }
-  &:nth-child(2),
-  &:nth-child(3) {
-    & p:nth-child(1) {
-      text-align: center;
-      font-family: "Ko Bold";
-      font-size: calc(12px + 0.5vw);
-      color: #ffffff;
-    }
-    & p:nth-child(2) {
-      text-align: center;
-      font-family: "Ko Medium";
-      font-size: calc(8px + 0.5vw);
-      color: #6f6f6f;
-    }
-  }
-`;
-
-export const WorkSectionGridItemText = styled.div`
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
+  width: 50%;
   height: 100%;
-  background-color: #000000;
+  transition: all 2s ease-in-out;
+
+  &:nth-child(even) {
+    & > div {
+      justify-content: center;
+      align-items: flex-end;
+    }
+  }
+  &:nth-child(odd) {
+    & > div {
+      justify-content: center;
+      align-items: flex-start;
+    }
+  }
+
+  & > div {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & > p:nth-child(1) {
+      font-family: "Ko Bold";
+      font-size: 30px;
+      color: #ffffff;
+    }
+
+    & > p:nth-child(2) {
+      font-family: "Ko Bold";
+      font-size: 24px;
+      color: #b0b0b0;
+    }
+  }
 `;
