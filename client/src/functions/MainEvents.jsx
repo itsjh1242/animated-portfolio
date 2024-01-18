@@ -48,7 +48,7 @@ const MainEvents = (props) => {
             if (firstImageControl) {
               fiClipPath = Math.max(0, 30 - (window.scrollY - currentPosY) * 0.02);
               fiClipPath <= 15 ? (fift.style.opacity = 0.5) : (fift.style.opacity = 1);
-              fi.style.height = Math.min(100, window.scrollY * 0.05 + 14) + "%";
+              fi.style.height = Math.min(100, window.scrollY * 0.1 + 14) + "%";
               fif.style.clipPath = `inset(0% ${fiClipPath}%)`;
             }
           });
@@ -147,15 +147,35 @@ const MainEvents = (props) => {
       OBS.ObserverMainPageWorkItemEvents(item, item.id);
       _item.addEventListener("mouseover", () => {
         cursorDot.children[0].innerText = "[OPEN]";
-        cursorDot.children[0].style.fontSize = "2rem";
+        cursorDot.children[0].style.fontSize = "1.5rem";
         cursorDot.children[0].style.transition = "all 1s ease-in-out";
         cursorOutline.style.border = "none";
+        cursorOutline.style.backgroundColor = "gray";
+        cursorOutline.style.width = "100px";
+        cursorOutline.style.height = "100px";
+        cursorOutline.style.mixBlendMode = "normal";
+        cursorOutline.style.opacity = "0.5";
       });
       _item.addEventListener("mouseleave", () => {
         cursorDot.children[0].innerText = "";
         cursorDot.children[0].style.fontSize = "1rem";
         cursorOutline.style.border = "1px solid #d3d3d3";
+        cursorOutline.style.backgroundColor = "transparent";
+        cursorOutline.style.width = "30px";
+        cursorOutline.style.height = "30px";
+        cursorOutline.style.mixBlendMode = "difference";
+        cursorOutline.style.opacity = "1";
       });
+    });
+
+    const workSectionBtn = document.querySelector("[data-work-section-btn]");
+    workSectionBtn.addEventListener("mouseover", (e) => {
+      cursorDot.style.display = "none";
+      cursorOutline.style.border = "none";
+    });
+    workSectionBtn.addEventListener("mouseleave", (e) => {
+      cursorDot.style.display = "block";
+      cursorOutline.style.border = "1px solid #d3d3d3";
     });
   };
 };

@@ -264,6 +264,7 @@ export const WorkSectionItemContext = styled.div`
     & > div {
       justify-content: center;
       align-items: flex-end;
+      text-align: right;
     }
   }
   &:nth-child(odd) {
@@ -292,5 +293,54 @@ export const WorkSectionItemContext = styled.div`
       font-size: 24px;
       color: #b0b0b0;
     }
+  }
+`;
+
+export const WorkSectionBelowContext = styled.div`
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  line-height: 36px;
+
+  & > p:nth-child(1) {
+    font-family: "En Light";
+    font-size: 32px;
+    color: #ffffff;
+  }
+  & > p:nth-child(2) {
+    font-family: "En Bold";
+    font-size: 48px;
+    color: #ffffff;
+  }
+`;
+
+export const WorkSectionMoreButton = styled.div`
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  line-height: 36px;
+  transition: all 0.5s ease-in-out;
+  border: 3px solid #ffffff;
+  border-radius: 25px;
+
+  &:hover {
+    background: linear-gradient(to right, #000 50%, #fff 50%);
+    background-size: 200% 100%;
+    background-position: bottom right;
+    color: #000000;
+  }
+
+  & > p {
+    font-family: "En Bold";
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: uppercase;
+    mix-blend-mode: difference;
   }
 `;

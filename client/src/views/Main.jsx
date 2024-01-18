@@ -102,12 +102,11 @@ const Main = (props) => {
           </S.SecondSection>
         </G.Frame>
         {/* Work Section - Grid */}
-        <G.Frame width="100vw" height="350vh">
+        <G.Frame width="100vw" height="400vh">
           <S.WorkSection data-work-section>
             <S.WorkSectionBackgroundContext data-work-section-bg-context>
               <p>&lt;Works /&gt;</p>
             </S.WorkSectionBackgroundContext>
-
             {Config.Landing.WorkSection.MainDisplay.map((item, index) => {
               return index % 2 === 0 ? (
                 <>
@@ -139,6 +138,13 @@ const Main = (props) => {
                 </>
               );
             })}
+            <S.WorkSectionBelowContext>
+              <p>Would you like to see more Works?</p>
+              <p>Here Are My All Works!</p>
+              <S.WorkSectionMoreButton data-work-section-btn>
+                <p>View All Works</p>
+              </S.WorkSectionMoreButton>
+            </S.WorkSectionBelowContext>
           </S.WorkSection>
         </G.Frame>
         <motion.div

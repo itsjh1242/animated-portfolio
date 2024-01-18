@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 // Views
 import Main from "./views/Main";
 import Test from "./views/Test";
+import Lotto from "./views/Lotto";
 
 // Configurations
 import * as Configuration from "./config";
@@ -61,6 +62,7 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route index element={<Main Config={Config} />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/lotto" element={<Lotto />} />
         </Routes>
       </AnimatePresence>
     </>

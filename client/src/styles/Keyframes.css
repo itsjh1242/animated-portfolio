@@ -69,3 +69,12 @@
     transform: translateY(0);
   }
 }
+
+@keyframes btnLeftToRight {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: fit-content;
+  }
+}
